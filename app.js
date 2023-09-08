@@ -9,6 +9,7 @@ const session = require('koa-session')
 const cors = require("koa2-cors");
 const { koaSwagger } = require('koa2-swagger-ui')
 const config = require('./config/constant')
+const websocket = require('./websocket')
 // const jwtAuth = require('./utils/jwt')
 
 const routes = require('./routes')
@@ -50,6 +51,8 @@ app.use(koaSwagger({
 }))
 
 routes(app)
+
+websocket.init();
 
 // error-handling
 app.on('error', (err, ctx) => {

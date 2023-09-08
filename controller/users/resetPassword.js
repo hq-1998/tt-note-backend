@@ -1,6 +1,7 @@
 const { RES_CODE } = require('../../config/constant');
 const responseClient = require('../../utils/responseClient');
-const bcrypt = require('crypto');
+const bcrypt = require('bcrypt');
+const db = require('../../db')
 
 const codeReg = /^\d{6}$/;
 const mobileReg = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
@@ -31,7 +32,7 @@ module.exports = async (ctx) => {
         return responseClient(ctx, RES_CODE.dataFail, '该手机号不存在');
     }
 
-    const sessionCode = ctx.session.resetCode;
+    const sessionCode = ctx.session.resetPasswordCode;
 
     if (+data.code !== +sessionCode) {
         return responseClient(ctx, RES_CODE.dataFail, '验证码错误，请重试')
@@ -43,7 +44,9 @@ module.exports = async (ctx) => {
 
     const updateResult = await db.sqlConnection(updatePasswordSql, [newBcryptPassword, data.account]);
 
-    if (updateResult.affectedRows !== 1) {
+    console.log(updateResult, 'updateResult')
+
+    if (updateResult.affectedRows === 1) {
         responseClient(ctx, RES_CODE.reqSuccess, '修改成功');
     } else {
         responseClient(ctx, RES_CODE.dataFail, '修改失败');

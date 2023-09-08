@@ -26,6 +26,10 @@ exports.send_code_schema = joi.object({
     account
 })
 
+exports.get_user_info_schema = joi.object({
+    userId: id
+})
+
 exports.reset_password_schema = joi.object({
     account,
     newPassword: password,

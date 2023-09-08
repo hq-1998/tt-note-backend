@@ -27,10 +27,13 @@
     "koa-views": "^6.2.0",
     "koa2-cors": "^2.0.6",
     "koa2-swagger-ui": "^5.9.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "mysql": "^2.18.1",
     "pug": "^2.0.3",
     "swagger-jsdoc": "^6.2.8",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "ws": "^8.14.0"
   },
   "devDependencies": {
     "cors": "^2.8.5",

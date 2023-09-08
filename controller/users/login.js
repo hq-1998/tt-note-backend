@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const { jwtSecret, expiresIn, RES_CODE } = require('../../config/constant');
 const responseClient = require('../../utils/responseClient');
 const jwt = require('jsonwebtoken');
+const { omit } = require('lodash');
 
 module.exports = async (ctx) => {
     let req = ctx.request;
@@ -31,7 +32,7 @@ module.exports = async (ctx) => {
         }
     }
 
-    const userInfo = { ...results[0], password: '' }
+    const userInfo = omit(results[0], 'password')
     const tokenStr = jwt.sign(userInfo, jwtSecret, { expiresIn })
 
     const result = {

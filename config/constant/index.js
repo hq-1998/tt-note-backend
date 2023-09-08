@@ -16,5 +16,6 @@ module.exports = {
         signed: true,
         rolling: false,
         renew: false
-    }
+    },
+    publicPath: env.NODE_ENV === 'dev' ? "": "/note"
 }
