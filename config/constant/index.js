@@ -17,5 +17,9 @@ module.exports = {
         rolling: false,
         renew: false
     },
-    publicPath: env.NODE_ENV === 'dev' ? "": "/note"
+    publicPath: "",
+    dbConfig: {
+        port: 3306,
+        connectionLimit: 5,
+    }
 }

@@ -7,9 +7,12 @@ const code = joi.string().pattern(/^\d{6}$/);
 const password = joi.string().pattern(/^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*()_"'+,-./:;<=>?[_\]{|}~\\]+$)[a-zA-Z\d!@#$%^&*()_"'+,-./:;<=>?[_\]`{|}~\\]+$/)
 
 const id = joi.number().integer().min(1).required();
-const nickname = joi.string().required();
-const email = joi.string().email().required();
-const avatar = joi.string().dataUri().required();
+const nickName = joi.string().min(1).max(16).required();
+const signature = joi.string().min(0).max(30).optional();
+const avatar = joi.string().optional();
+const province = joi.number().integer().required();
+const city = joi.number().integer().required();
+const gender = joi.number().integer().min(0).max(2).required();
 const type = joi.number().integer().min(1).max(2).required();
 
 exports.register_login_schema = joi.alternatives([{
@@ -38,7 +41,10 @@ exports.reset_password_schema = joi.object({
 
 exports.update_userInfo_schema = joi.object({
     id,
-    nickname,
-    email,
+    nickName,
+    gender,
+    signature,
+    province,
+    city,
     avatar
 })

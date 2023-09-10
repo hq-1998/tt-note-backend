@@ -4,17 +4,19 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "cos-nodejs-sdk-v5": "^2.12.4",
     "debug": "^4.1.1",
+    "dotenv": "^16.3.1",
     "joi": "^17.10.1",
     "jsonwebtoken": "^9.0.2",
     "koa": "^2.7.0",
+    "koa-body": "^6.0.1",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",

@@ -44,7 +44,6 @@ class GlobalWebSocket {
     }
     sendToClient(userId, message) {
         const client = this.clients.get(userId);
-        console.log(client, Object.entries(this.clients), 'client')
         if (client) {
             client.send(JSON.stringify(message))
         }

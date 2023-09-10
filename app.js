@@ -1,15 +1,16 @@
 const Koa = require('koa')
 const app = new Koa()
-const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const logger = require('koa-logger')
 const session = require('koa-session')
 const cors = require("koa2-cors");
 const { koaSwagger } = require('koa2-swagger-ui')
 const config = require('./config/constant')
 const websocket = require('./websocket')
+
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 // const jwtAuth = require('./utils/jwt')
 
 const routes = require('./routes')
@@ -20,7 +21,7 @@ const { RES_CODE } = require('./config/constant')
 onerror(app)
 
 // middlewares
-app.use(bodyparser({enableTypes:['json', 'form', 'text']}))
+app.use(koaBody.default({enableTypes:['json', 'form', 'text'], multipart: true}))
 app.use(cors({
   credentials: true
 }))
@@ -30,11 +31,6 @@ app.use(logger())
 app.keys = ['xtbj'];
 app.use(session(config.sessionConfig, app))
 app.use(require('koa-static')(__dirname + '/public'))
-
-app.use(views(__dirname + '/views', {
-  extension: 'pug'
-}))
-
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()

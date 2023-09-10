@@ -15,7 +15,11 @@ const swaggerDefinition = {
 
 const options = {
     swaggerDefinition,
-    apis: [path.join(__dirname, '../routes/users.js')]
+    apis: [
+        path.join(__dirname, '../routes/area.js'),
+        path.join(__dirname, '../routes/users.js'),
+        path.join(__dirname, '../routes/upload.js')
+    ]
 }
 
 const swaggerSpec = swaggerJSDoc(options)

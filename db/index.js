@@ -1,12 +1,13 @@
 const mysql = require('mysql')
+const { dbConfig } = require('../config/constant')
 
 function connect() {
     return mysql.createConnection({
-        host: '127.0.0.1',
-        user: 'root',
-        password: '12345678',
-        database: 'note',
-        connectionLimit: 5
+        host: process.env.host,
+        user: process.env.user,
+        password: process.env.password,
+        database: process.env.database,
+        connectionLimit: dbConfig.connectionLimit
     })
 }
 
