@@ -5,6 +5,7 @@ const resetPassword = require('./resetPassword')
 const sendResetPasswordCode = require('./sendResetPasswordCode')
 const getUserInfo = require('./getUserInfo');
 const updateUserInfo = require('./updateUserInfo');
+const sendRegisterCode = require('./sendRegisterCode');
 
 module.exports = {
     login,
@@ -13,5 +14,6 @@ module.exports = {
     resetPassword,
     sendResetPasswordCode,
     getUserInfo,
-    updateUserInfo
+    updateUserInfo,
+    sendRegisterCode
 }

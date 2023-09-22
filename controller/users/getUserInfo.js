@@ -17,8 +17,10 @@ module.exports = async (ctx) => {
     const sqlStr = `select * from users where id = ?`;
 
     const res = await db.sqlConnection(sqlStr, {
-        id: userId,
+        id: Number(userId),
     })
+
+    console.log(res, '===res===')
 
     if (Array.isArray(res) && res.length > 0) {
         const result = res[0];
