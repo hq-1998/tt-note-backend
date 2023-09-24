@@ -20,8 +20,6 @@ module.exports = async (ctx) => {
         id: Number(userId),
     })
 
-    console.log(res, '===res===')
-
     if (Array.isArray(res) && res.length > 0) {
         const result = res[0];
         globalWebSocket.sendToClient(result.id, {
